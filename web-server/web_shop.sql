@@ -248,3 +248,4 @@ CREATE TABLE `user_info` (
 INSERT INTO `user_info` VALUES ('5', '13666666666', null, '13666666666', '女', '福州', '2000-01-01', '买买买！！！', '', 'http://localhost:3000/avatar_uploads/avatar_default.jpg');
 INSERT INTO `user_info` VALUES ('8', '15666666666', null, '15666666666', '女', '', '', '', '莫得感情的机器人', 'http://localhost:3000/avatar_uploads/avatar_default.jpg');
 INSERT INTO `user_info` VALUES ('9', '来来来', 'a163a36c731d1ac664841b6d196a05e3', '18666666666', '男', '', '', '', 'HS', 'http://localhost:3000/avatar_uploads/upload_5a67435fbb680332a6a3aa62014f5aa2.jpg');
+INSERT INTO `user_info` VALUES ('10', '小辉', 'xiaohui123', '14623769870', '男', '', '', '', 'Be Water', 'http://localhost:3000/avatar_uploads/p1581466111.jpg');

@@ -17,7 +17,7 @@ let tmp_captcha = '';
 /* GET home page. */
 router.get('/', (req, res, next) => {
     console.log(md5(md5("admin") + S_KEY))
-    res.render('index', {title: '西二商城'});
+    res.render('index', {title: '小辉商城'});
 });
 
 /**************************************** 前台商城 ****************************************** */
@@ -229,6 +229,7 @@ router.get('/api/send_code', (req, res) => {
     let phone = req.query.phone;
     // 随机产生验证码
     let code = sms_util.randomCode(6);
+    console.log(code);
 
     /* sms_util.sendCode(phone, code, function (success) {
         if (success) {
