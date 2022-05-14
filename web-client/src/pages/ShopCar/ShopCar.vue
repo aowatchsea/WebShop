@@ -1,5 +1,20 @@
 <template>
   <div id="shopcar">
+  	<v-modal title="结算界面"
+  	         :visible="visible_calculate"
+  	         okText="确定"
+  	         cancelText="取消"
+  	         @ok="handle_calculate"
+  	         @cancel="handleCancel"
+  	         :confirm-loading="asyncConfirmLoading">
+  	         <!-- <qrcode-vue :value=totalPrice :size=300 level="H" /> -->
+  	         <v-spin :spinning="spinning" tip="加载中">
+  	         <v-card class="text-center" :loading="spinning">
+  	         <div class="block_message"><img width="45%" src="./../../common/img/pay.jpg" class="navbar-brand-img mx-auto"> </div>
+  	         <div class="qrcode"> <qr-code :text="String(totalPrice)" size=80></qr-code>  </div>
+  	         </v-card>
+  	         </v-spin>
+  	</v-modal>		
     <div id="content">
 			<div class="header">
 				<img src="./../../common/img/logo-round.png" class="header_logo" />
@@ -65,7 +80,7 @@
 					<strong class="selected_price">{{totalPrice | moneyFormat(totalPrice)}}</strong>
 				</div>
 				<div class="btn-area">
-					<a class="btn-sumbit" :class="{'btn-allow': totalAmount}">结&nbsp;算</a>
+					<a class="btn-sumbit" :class="{'btn-allow': totalAmount}" @click="calculate()">结&nbsp;算</a>
 				</div>
 			</div>
 		</div>
@@ -85,6 +100,9 @@
         totalPrice: 0,  // 商品总价
         currentDelGoods: {}, // 当前删除的商品
         totalAmount: 0,
+        asyncConfirmLoading: false,
+      	visible_calculate: false,
+      	spinning: true,
       }
     },
     computed: {
@@ -96,6 +114,28 @@
       this.$store.dispatch('reqCartsGoods',{user_id});
     },
     methods: {
+    	calculate(){
+    		setTimeout(()=>{
+    			this.spinning = false;
+    		}, 2000);
+    		this.visible_calculate = true;
+    	},
+    	handle_calculate(){
+    		this.asyncConfirmLoading = true;
+    		setTimeout(()=>{
+    			this.$message.info('支付成功', 5);
+    			this.visible_calculate = false;
+    			this.asyncConfirmLoading = false;
+    			let user_id = this.userInfo.id;
+    			this.$store.dispatch('delAllGoods', {user_id});
+    			this.getAllGoodsPrice();
+    		}, 2000);	
+    	},
+    	handleCancel(){
+    		this.$message.info('已取消支付');
+    		this.spinning = true;
+    		this.visible_calculate = false;
+    	},
       // 1.更新单个商品数量
       updateGoodsCount(goods, count){
         let user_id = this.userInfo.id;
@@ -150,10 +190,7 @@
           this.$store.dispatch('delSingleGoods', {goods, user_id});
           this.getAllGoodsPrice();
         }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });
+        	this.$message.info('已取消删除');
         });
       },
       // 7.删除所有商品
@@ -167,10 +204,7 @@
           this.$store.dispatch('delAllGoods', {user_id});
           this.getAllGoodsPrice();
         }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });
+        	this.$message.info('已取消删除');
         });
       },
     },
@@ -379,5 +413,16 @@
 .btn-area>.btn-sumbit.btn-allow{
 	background: #f22d00;
 	cursor: pointer;
+}
+.block_message {
+  /*margin-bottom: 30px;*/
+}
+.qrcode {
+	border: 1px rgb(222,222,222) solid;
+	padding: 2px;
+	position:  relative;
+	left: 176px;
+	top: -183px;
+	float: left;
 }
 </style>

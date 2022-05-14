@@ -106,10 +106,7 @@
         this.goodsInfo.counts = Number(this.goodsInfo.counts);
         let result = await changeGoodsInfo(this.goodsInfo);
         if(result.success_code === 200){
-          this.$message({
-              type: 'success',
-              message: '修改成功'
-            });
+          this.$message.success('修改成功');
           this.$router.replace('/admin');
           getAllgoods();
         }

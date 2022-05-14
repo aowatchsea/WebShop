@@ -39,5 +39,4 @@
 	list-style: none;
 }
 </style>
-  }
 

@@ -80,18 +80,12 @@
         }).then(async () => {
           let result = await adminLogout();
           if(result.success_code === 200){
-             this.$message({
-              type: 'success',
-              message: '退出成功!'
-            });
+            this.$message.success('退出成功!');
             this.$router.replace('/home');
             window.localStorage.removeItem("adminInfo");
           }
         }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消退出'
-          });
+          this.$message.info('已取消退出');
         });
       },
       goTo(path){

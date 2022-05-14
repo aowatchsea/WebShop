@@ -1,7 +1,7 @@
 <template>
   <div id="me">
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <router-link class="navbar-brand col-sm-3 col-md-2 mr-0" to="/home">西二商城</router-link>
+      <router-link class="navbar-brand col-sm-3 col-md-2 mr-0" to="/home">小辉商城</router-link>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
           <a class="nav-link" @click.prevent="goBack">返回商城</a>
@@ -76,18 +76,12 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '退出成功!'
-          });
+          this.$message.success('退出成功!');
           let result = this.logOut({});
           this.$router.replace('/home');
           window.localStorage.removeItem("userInfo");
         }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消退出'
-          });
+          this.$message.info('已取消退出');
         });
       },
       goBack(){

@@ -95,16 +95,10 @@
         }).then( async() => {
 		  let result = await deleteRecomGoods(row.goods_id);
           if(result.success_code === 200){
-            this.$message({
-              type: 'success',
-              message: '已删除'
-            });
+            this.$message.success('已删除');
           }
         }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });
+          this.$message.info('已取消删除');
         });
       },
       handleCurrentChange(val) {

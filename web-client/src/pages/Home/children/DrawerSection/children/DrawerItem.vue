@@ -42,16 +42,10 @@
             type: 'warning'
           }).then(() => {
             this.$store.dispatch('delSingleGoods', {goods, user_id});
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            });
+            this.$message.success('删除成功!');
           }).catch(() => {
             this.$store.dispatch('updateGoodsCount', {goods, count: 1, user_id});
-            this.$message({
-              type: 'info',
-              message: '已取消删除'
-            });
+            this.$message.info('已取消删除');
           });
           return;
         }

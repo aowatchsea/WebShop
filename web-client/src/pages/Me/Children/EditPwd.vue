@@ -32,20 +32,17 @@
       },
       async submitEdit(){
         if(!this.newPwd || !this.newPwd2){
-          this.$message('输入框内容不得为空！');
+          this.$message.warning('输入框内容不得为空！');
           return;
         }
         if(this.newPwd != this.newPwd2){
-          this.$message('两次输入的新密码不一致！');
+          this.$message.warning('两次输入的新密码不一致！');
           return;
         }
 
         let result = await changeUserPwd(this.userInfo.id, this.oriPwd, this.newPwd);
         if(result.success_code === 200){
-          this.$message({
-            message: result.message,
-            type: 'success'
-          });
+          this.$message.success(result.message);
           this.$router.replace('/me/profile');
         }else{
           this.$message.error(result.message);

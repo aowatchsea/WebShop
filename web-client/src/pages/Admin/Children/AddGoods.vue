@@ -163,22 +163,13 @@
               });
           */
           if(result.success_code === 200){
-            this.$message({
-              type: 'success',
-              message: '添加成功'
-            });
+            this.$message.success('添加成功');
             this.$router.replace('/admin');
             getAllgoods();
           }else if(result.success_code === 500){
-            this.$message({
-              type: 'info',
-              message: '商品已存在'
-            });
+            this.$message.info('商品已存在');
           }else{
-            this.$message({
-              type: 'error',
-              message: '添加失败'
-            });
+            this.$message.error('添加失败');
           }
         }
       },

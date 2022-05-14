@@ -92,19 +92,16 @@
       },
       async submitEdit(){
         if(!this.phone){
-          this.$message('手机号不得为空！');
+          this.$message.warning('手机号不得为空！');
           return;
         }
         if(!this.code){
-          this.$message('验证码不得为空！');
+          this.$message.warning('验证码不得为空！');
           return;
         }
         let result = await changeUserPhone(this.userInfo.id, this.phone, this.code);
         if(result.success_code === 200){
-          this.$message({
-            message: result.message,
-            type: 'success'
-          });
+          this.$message.success(result.message);
           this.$store.dispatch('getUserInfo',{user_id: this.userInfo.id});
           this.$router.replace('/me/profile');
         }else{

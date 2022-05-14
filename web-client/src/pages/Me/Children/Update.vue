@@ -162,10 +162,7 @@
         // 3.3 返回主界面
         if(result.success_code === 200){
             // 3.2 提示用户
-            this.$message({
-                type: 'success',
-                message: result.message
-            });
+            this.$message.success(result.message);
             // 3.4 更新本地数据
             this.$store.dispatch('getUserInfo',{user_id: this.userInfo.id});
             // 3.5 返回主界面

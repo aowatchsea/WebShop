@@ -10,7 +10,7 @@ import md5 from 'blueimp-md5'
 import formidable from 'formidable'
 import {basename} from 'path'
 
-const S_KEY = '@WaLQ1314?.LqFtK.Com.#'; // 盐
+const S_KEY = '@xiaohuishangcheng.com#'; // 盐
 const users = {}; // 用户信息
 let tmp_captcha = '';
 
